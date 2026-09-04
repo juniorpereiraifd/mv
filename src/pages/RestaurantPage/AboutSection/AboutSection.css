@@ -1,0 +1,120 @@
+/* AboutSection – bloco "Sobre" (design 68:3866). */
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-section__block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-section__title {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-title-md);
+  line-height: 24px;
+  color: var(--color-text-primary);
+}
+
+.about-section__description {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: var(--font-size-body);
+  line-height: 18px;
+  color: var(--color-text-secondary);
+}
+
+.about-section__more {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+/* Comodidades – lista em 2 colunas */
+.about-section__amenities {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 16px;
+}
+
+.about-section__amenity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: var(--font-size-caption);
+  line-height: 16px;
+  color: var(--color-text-primary);
+}
+
+/* Card de localização – superfície secundária com tile de mapa interno */
+.about-section__location {
+  padding: 4px;
+  border-radius: 20px;
+  background: var(--color-surface-secondary);
+}
+
+.about-section__map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 235px;
+  border-radius: 16px;
+  overflow: hidden;
+  /* Placeholder de mapa – sem asset, gradiente neutro com pin central */
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 40%),
+    linear-gradient(180deg, #ece8e0 0%, #dfe8df 100%);
+}
+
+.about-section__location-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 8px 8px;
+}
+
+.about-section__address {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: var(--font-size-caption);
+  line-height: 16px;
+  color: var(--color-text-secondary);
+}
+
+.about-section__route {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 40px;
+  border: none;
+  border-radius: 16px;
+  background: var(--color-page-bg);
+  font-family: var(--font-brand);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-body);
+  line-height: 16px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.about-section__route:hover {
+  background: var(--color-outline-default);
+}
+
+/* icon-directions espelhado horizontalmente para apontar na direção do design */
+.about-section__route .icon {
+  transform: scaleX(-1);
+}

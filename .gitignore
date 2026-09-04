@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Local env / editor
+*.local
+.DS_Store
+
+# Environment & secrets – nunca versionar credenciais.
+# Chaves de KV/Blob ficam apenas em .env.local (veja .env.example).
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# Vercel
+.vercel
+
+# Subprojetos mantidos fora deste repo (não fazem parte do app B2C "mv")
+/b2b/
+/Portal-B2B-main/
+/restaurantes/
+
+# Claude Code local (config da ferramenta, não é código do app)
+.claude/
+
+# Saída gerada por scripts/build_restaurantes.mjs (regenerável)
+/restaurantes.json
