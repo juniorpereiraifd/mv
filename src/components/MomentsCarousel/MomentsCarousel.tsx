@@ -5,6 +5,10 @@ import './MomentsCarousel.css'
 interface MomentsCarouselProps {
   /** Momentos compartilhados da loja – cards do rail (design 68:3911). */
   moments: SharedMoment[]
+  /** Fotos de salão/prato da loja que simulam as fotos do cliente: uma
+   * DIFERENTE por card, ciclando se houver menos fotos que cards. Sem pool, os
+   * cards usam o asset demo padrão. */
+  photos?: string[]
 }
 
 /**
@@ -14,11 +18,15 @@ interface MomentsCarouselProps {
  *
  * O rail vive DENTRO da seção "Avaliações" (`#avaliacoes`), como último filho.
  */
-export default function MomentsCarousel({ moments }: MomentsCarouselProps) {
+export default function MomentsCarousel({ moments, photos = [] }: MomentsCarouselProps) {
   return (
     <div className="moments-carousel__rail">
-      {moments.map((moment) => (
-        <ReviewCard key={moment.author} moment={moment} />
+      {moments.map((moment, index) => (
+        <ReviewCard
+          key={moment.author}
+          moment={moment}
+          image={photos.length ? photos[index % photos.length] : undefined}
+        />
       ))}
     </div>
   )

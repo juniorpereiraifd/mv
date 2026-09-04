@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Icon from '../../../components/Icon/Icon'
 import restaurantImage from '../../../assets/card/restaurant.png'
 import type { SharedMoment } from '../../../data/merchants'
@@ -5,7 +6,8 @@ import './ReviewCard.css'
 
 interface ReviewCardProps {
   moment: SharedMoment
-  /** Foto do momento – demo: a foto do restaurante (asset único da app). */
+  /** Foto do momento – a foto real de salão/prato da loja, como se tivesse sido
+   * tirada pelo cliente. Sem `image`, cai no asset demo padrão da app. */
   image?: string
 }
 
@@ -17,10 +19,20 @@ interface ReviewCardProps {
  * fica sobreposto à foto.
  */
 export default function ReviewCard({ moment, image = restaurantImage }: ReviewCardProps) {
+  const [failed, setFailed] = useState(false)
+  const src = failed ? restaurantImage : image
+
   return (
     <article className="review-card">
       <div className="review-card__media">
-        <img className="review-card__photo" src={image} alt="" />
+        {/* Fallback neutro em runtime: se a URL real de salão falhar no
+            navegador (CDN/geo), o card cai no asset demo em vez de quebrar. */}
+        <img
+          className="review-card__photo"
+          src={src}
+          alt=""
+          onError={() => setFailed(true)}
+        />
         <div className="review-card__top-gradient" aria-hidden="true" />
         <div className="review-card__bottom-gradient" aria-hidden="true" />
 

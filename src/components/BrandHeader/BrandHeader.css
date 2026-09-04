@@ -67,7 +67,7 @@
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Área de texto da busca – ocupa o restante da pílula, duas linhas centralizadas.
+/* Área de texto da busca – ocupa o restante da pílula, conteúdo centralizado.
    O elemento é um `<button type="button">` (abre o overlay de busca da home via
    `onOpenBuscar`, App/BuscarSheet): um `<button>` herda do UA `font`/`appearance`
    e as cores – normaliza (`font: inherit`, `appearance: none`); o resto já zera
@@ -109,16 +109,6 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* Linha 2 – "Agora ・ 2 pessoas" (10px/16px, Regular) */
-.brand-header__toolbar-search-subtitle {
-  font-family: var(--font-brand);
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 16px;
-  color: rgba(255, 255, 255, 0.9);
-  white-space: nowrap;
-}
-
 /* Botão de ação (presente) dentro da pílula (design 64:2644): círculo 38px */
 .brand-header__toolbar-action {
   display: inline-flex;
@@ -131,6 +121,9 @@
   border: none;
   border-radius: 50%;
   background-color: var(--color-bg-toolbar-action);
+  /* Cor do glifo de fonte (a lupa de busca, família Line) – o presente que
+     ficava aqui era um SVG branco próprio; glifo herda `color`. */
+  color: #ffffff;
   cursor: pointer;
 }
 

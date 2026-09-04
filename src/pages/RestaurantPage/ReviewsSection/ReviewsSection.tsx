@@ -7,6 +7,25 @@ interface ReviewsSectionProps {
   merchant: Merchant
 }
 
+/** Nº de fotos que o bento "Fotos" (GallerySection) exibe logo acima. */
+const GALLERY_TILES_ON_PAGE = 4
+
+/**
+ * Fotos dos cards de momento: as fotos REAIS de salão/prato da loja
+ * (`merchant.gallery`), simulando a foto que o cliente postou na avaliação.
+ *
+ * Exclui a capa/hero (`merchant.image`) – em várias lojas a capa também fecha a
+ * galeria, e repeti-la num card pareceria bug. Como o bento "Fotos" já usa as 4
+ * primeiras na tela acima, empurra essas para o fim do pool e começa pelas
+ * restantes: com galeria grande os cards visíveis mostram fotos inéditas; com
+ * galeria curta, recicla (protótipo – reuso da galeria é esperado).
+ */
+function momentPhotos(merchant: Merchant): string[] {
+  const salon = merchant.gallery.filter((url) => url !== merchant.image)
+  if (salon.length <= GALLERY_TILES_ON_PAGE) return salon
+  return [...salon.slice(GALLERY_TILES_ON_PAGE), ...salon.slice(0, GALLERY_TILES_ON_PAGE)]
+}
+
 /** Linha do gráfico de notas – rótulo à esquerda, estrela + valor à direita. */
 function ScoreBar({ label, value }: { label: string; value: number }) {
   return (
@@ -69,7 +88,6 @@ export default function ReviewsSection({ merchant }: ReviewsSectionProps) {
 
           <div className="reviews-section__summary">
             <div className="reviews-section__summary-header">
-              <Icon name="star" size={16} />
               <span className="reviews-section__summary-title">O que os clientes dizem?</span>
               <span className="reviews-section__summary-ai">Resumido por IA</span>
             </div>
@@ -78,7 +96,7 @@ export default function ReviewsSection({ merchant }: ReviewsSectionProps) {
         </div>
       </div>
 
-      <MomentsCarousel moments={merchant.sharedMoments} />
+      <MomentsCarousel moments={merchant.sharedMoments} photos={momentPhotos(merchant)} />
     </section>
   )
 }

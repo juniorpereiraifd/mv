@@ -53,7 +53,7 @@
 
 /* Painel do hub – superfície secundária (#f5f5f5), largura do frame 139:4526
    (361px) centralizada, 4 cantos raio 40, sombra do design. gap 16 empilhando
-   header, pílulas e CTA como no frame. Entra deslizando -14px com fade; a saída
+   header e as duas pílulas como no frame. Entra deslizando -14px com fade; a saída
    usa a `transition` + `.buscar-sheet--closing`. `outline:none` para o foco de
    abertura (`tabIndex={-1}`) não desenhar anel – o focus-visible dos filhos
    segue visível. */
@@ -187,40 +187,6 @@
 .buscar-pill__text strong {
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
-}
-
-/* CTA "Buscar" (design): h40, raio 12, fundo #141414, texto branco Medium 14.
-   `<Link>` estilizado como botão de largura total. */
-.buscar-sheet__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 40px;
-  margin-top: 4px;
-  border: none;
-  border-radius: 12px;
-  background: #141414;
-  font-family: var(--font-brand);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-body);
-  line-height: 16px;
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.buscar-sheet__cta:hover {
-  background: #2a2a2a;
-}
-
-.buscar-sheet__cta:active {
-  background: #000;
-}
-
-.buscar-sheet__cta:focus-visible {
-  outline: 2px solid #141414;
-  outline-offset: 2px;
 }
 
 /* `prefers-reduced-motion`: sem fade/deslize – o painel aparece/desaparece

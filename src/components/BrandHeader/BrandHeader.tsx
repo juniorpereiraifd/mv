@@ -45,10 +45,9 @@ export default function BrandHeader({ onOpenBuscar }: BrandHeaderProps) {
               <span className="brand-header__toolbar-search-title-muted">Buscar em </span>
               Cambuí, Campinas
             </span>
-            <span className="brand-header__toolbar-search-subtitle">Agora ・ 2 pessoas</span>
           </button>
           <button type="button" className="brand-header__toolbar-action" aria-label="Buscar">
-            <Icon name="gift" size={38} />
+            <Icon name="search" size={20} style="Line" />
           </button>
         </div>
 

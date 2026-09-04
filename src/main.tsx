@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import App from './App'
 import BeneficioPage from './pages/BeneficioPage/BeneficioPage'
+import CategoriaPage from './pages/CategoriaPage/CategoriaPage'
 import MovePage from './pages/MovePage/MovePage'
 import BuscarEnderecoPage from './pages/BuscarFlow/BuscarEnderecoPage'
 import BuscarRestaurantesPage from './pages/BuscarFlow/BuscarRestaurantesPage'
@@ -71,6 +72,11 @@ createRoot(document.getElementById('root')!).render(
                 no fallback `*` → `/`). */}
             <Route path="/buscar/endereco" element={<ClientFrame><BuscarEnderecoPage /></ClientFrame>} />
             <Route path="/buscar/restaurantes" element={<ClientFrame><BuscarRestaurantesPage /></ClientFrame>} />
+            {/* Páginas de categoria do rail da home (MerchantRail): /categorias/:slug
+                reapresenta a seção alta da home (chips + grade) filtrada pela
+                categoria tocada (ver CategoriaPage). Dentro do ClientFrame – o
+                mockup de TV vem de graça. */}
+            <Route path="/categorias/:slug" element={<ClientFrame><CategoriaPage /></ClientFrame>} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

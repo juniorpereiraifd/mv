@@ -26,9 +26,11 @@
   background: var(--color-surface-secondary);
 }
 
-/* Carrossel horizontal de ofertas (68:3806) – os cards rolam lado a lado com
-   snap e a barra fica oculta; o próximo card "espia" na borda direita. O recuo
-   de 8px na borda esquerda vem do padding do componente cinza. */
+/* Carrossel horizontal de ofertas (68:3806). Com o aceite de consistência, o
+   bloco anuncia UMA oferta – o card único estica até a largura do componente
+   cinza (o rail de vários cards só voltaria se houvesse mais de uma oferta; o
+   markup é preservado e a barra de rolagem fica oculta). O recuo de 8px na
+   borda esquerda vem do padding do componente cinza. */
 .offer-section__carousel {
   display: flex;
   flex-direction: row;
@@ -42,11 +44,10 @@
   display: none;
 }
 
-/* Card de oferta – branco, 88px, rounded-18 (68:3807/68:3808). Como cada loja
-   tem dois cards, eles crescem (flex-grow) igualmente até preencher toda a
-   largura do componente cinza (respeitando o padding de 8px do rail). Quando
-   não couberem na largura disponível (telas estreitas), voltam à largura-base
-   de 312px e o rail rola com snap "card a card", o próximo espiando na borda. */
+/* Card de oferta – branco, 88px, rounded-18 (68:3807/68:3808). Com uma oferta
+   só, o `flex-grow` estica o card único até a largura do componente cinza
+   (respeitando o padding de 8px do rail). Em telas estreitas ele mantém a
+   largura-base de 312px. */
 .offer-card {
   position: relative;
   flex: 1 0 min(312px, 100%);
@@ -70,12 +71,15 @@
   cursor: pointer;
 }
 
-.offer-card__logo {
+.offer-card__photo {
   flex-shrink: 0;
   width: 77px;
   height: 78px;
   border-radius: 18px;
   object-fit: cover;
+  /* Tile neutro enquanto a foto carrega (mesmo idioma do default de imagem
+     dos Cards da home). */
+  background: var(--color-surface-secondary);
 }
 
 .offer-card__content {

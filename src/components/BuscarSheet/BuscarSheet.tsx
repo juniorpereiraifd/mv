@@ -27,8 +27,8 @@ const EXIT_MS = 200
  * Saídas do painel:
  *   - X/Escape/tocar fora → `onClose` (volta ao estado fechado; sem router);
  *   - pílula 1 → troca de endereço (`/buscar/endereco`);
- *   - pílula 2 e CTA → busca de restaurantes (`/buscar/restaurantes`).
- * As pílulas e o CTA são `<Link>`: navegar desmonta o App (e o overlay junto),
+ *   - pílula 2 → busca de restaurantes (`/buscar/restaurantes`).
+ * As pílulas são `<Link>`: navegar desmonta o App (e o overlay junto),
  * o que já fecha o modal sem passar por `onClose`. O endereço atual é fixo do
  * design ("Perto de mim em Cambuí, Campinas") – não há geolocalização real.
  */
@@ -129,10 +129,6 @@ export default function BuscarSheet({ open, onClose }: BuscarSheetProps) {
           <span className="buscar-pill__text">Busque por restaurantes</span>
         </Link>
 
-        {/* CTA principal do sheet → busca (mesmo destino da pílula 2). */}
-        <Link to="/buscar/restaurantes" className="buscar-sheet__cta">
-          Buscar
-        </Link>
       </div>
     </div>
   )

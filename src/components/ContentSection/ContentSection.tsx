@@ -6,6 +6,13 @@ import './ContentSection.css'
 export interface ContentSectionProps {
   /** Section title – see SectionHeader. */
   title?: string
+  /**
+   * Omit the header row (SectionHeader) entirely. Lets a page reuse the grid /
+   * filters / empty-state slots without the title line – e.g. the category
+   * pages, where the bar above already carries the title. Defaults to `true`
+   * (header shown) so the existing call sites keep their behavior.
+   */
+  header?: boolean
   /** "See all" action label – see SectionHeader. */
   actionLabel?: string
   /** Green "open now" status dot before the title – see SectionHeader. */
@@ -98,6 +105,7 @@ function useContentWidth() {
  */
 export default function ContentSection({
   title,
+  header = true,
   actionLabel,
   status = false,
   cardsPerRow = 4,
@@ -140,7 +148,9 @@ export default function ContentSection({
 
   return (
     <section className="content-section">
-      <SectionHeader title={title} actionLabel={actionLabel} status={status} />
+      {header !== false && (
+        <SectionHeader title={title} actionLabel={actionLabel} status={status} />
+      )}
       {filters && <div className="content-section__filters">{filters}</div>}
       {carousel ? (
         // O ref mede o rail full-bleed (100vw) para o cálculo infinito.

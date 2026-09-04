@@ -261,7 +261,7 @@ export default function App() {
           `.app__content` não têm transform/filter/position, o `position:fixed`
           do BuscarSheet cobre a viewport inteira (ignora o `max-width:834px`)
           e borra a home viva por trás. Aberto por `buscarOpen`; o X/Escape/
-          toque fora chamam `onClose`, e as pílulas/CTA navegam (o App
+          toque fora chamam `onClose`, e as pílulas navegam (o App
           desmonta junto e o modal some). */}
       <BuscarSheet open={buscarOpen} onClose={() => setBuscarOpen(false)} />
     </div>
