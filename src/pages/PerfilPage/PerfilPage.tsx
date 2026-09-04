@@ -18,11 +18,15 @@ import './PerfilPage.css'
  * Conteúdo HÍBRIDO: o TOPO é, em geral, vitrine fixa com a cópia do mock –
  * "Olá, Mariana" e os contadores 27/3 são números de exemplo que o app não
  * modela (não há nome de usuária nem contador de check-ins) e ficam iguais ao
- * frame. As TRÊS seções são alimentadas por dados:
+ * frame. Desvio: um TERCEIRO contador "Reservas" (fora do frame 112:8355) foi
+ * adicionado ao trio – vivo, contando os cartões do rail "Suas reservas"
+ * (reservas confirmadas + a demo quando ainda não há nenhuma). As TRÊS seções
+ * são alimentadas por dados:
  *   - "Suas reservas": CARROSSEL horizontal (rail) das reservas confirmadas no
  *     fluxo de reserva (`useReservas` – store local, persistido no navegador),
- *     resolvidas no catálogo; cada cartão mostra data/horário/convidados e
- *     navega para o benefício da oferta reservada. Sem reservas confirmadas, o
+ *     resolvidas no catálogo; cada cartão mostra data/horário/convidados e o
+ *     clique abre a tela de reserva confirmada (`/loja/:slug/reserva/sucesso`,
+ *     reexibindo ticket + voucher do snapshot). Sem reservas confirmadas, o
  *     rail recebe UMA reserva demo (`SEED_RESERVAS` – loja real do catálogo com
  *     oferta de reserva, como o `SEED_HISTORY` da lista) e nunca abre vazio.
  *   - "Seus cupons": CARROSSEL horizontal (rail) do benefício ativo
@@ -53,7 +57,8 @@ import './PerfilPage.css'
  * progresso do frame ("N visitas", "Avalie sua visita") que o app não modela.
  */
 
-/** Vitrine fixa do frame – rótulo dos contadores (112:8355). */
+/** Vitrine fixa do frame – os contadores "de exemplo" (112:8355). O terceiro
+ * contador ("Reservas") é vivo e entra via `summaryCounters`, no corpo. */
 const VITRINE_COUNTERS = [
   { value: '27', label: 'Check-ins' },
   { value: '3', label: 'Avaliações' },
@@ -201,6 +206,15 @@ export default function PerfilPage() {
     return out
   }, [reservas])
 
+  // Contadores do topo: 27 (check-ins) e 3 (avaliações) seguem a cópia fixa do
+  // frame; o terceiro ("Reservas") é VIVO e espelha os cartões do rail de
+  // reservas acima (confirmadas + a demo quando ainda não há nenhuma), pra o
+  // número nunca divergir do que a seção mostra logo abaixo.
+  const summaryCounters = [
+    ...VITRINE_COUNTERS,
+    { value: String(reservaCards.length), label: 'Reservas' },
+  ]
+
   // Restaurantes com check-in real (alimentam só "Seus cupons"), na ordem dos
   // check-ins (mais recente primeiro), resolvidos no catálogo. Slug que não
   // existe mais no catálogo é descartado (defensivo – o fake back-end pode ter
@@ -256,7 +270,7 @@ export default function PerfilPage() {
 
         {/* Contadores (112:8355) – vitrine fixa */}
         <div className="perfil-page__counters" aria-label="Resumo do seu perfil">
-          {VITRINE_COUNTERS.map((counter) => (
+          {summaryCounters.map((counter) => (
             <div className="perfil-page__counter" key={counter.label}>
               <span className="perfil-page__counter-value">{counter.value}</span>
               <span className="perfil-page__counter-label">{counter.label}</span>
@@ -265,8 +279,9 @@ export default function PerfilPage() {
         </div>
 
         {/* "Suas reservas" – CARROSSEL (rail horizontal): reservas confirmadas
-            no fluxo de reserva (store local `useReservas`), navegando para o
-            benefício da oferta reservada. Vem no topo das seções pra reserva
+            no fluxo de reserva (store local `useReservas`). O clique no card
+            reabre a tela de reserva confirmada (`/reserva/sucesso`, com o
+            snapshot da reserva no state). Vem no topo das seções pra reserva
             recém-feita aparecer sem rolagem (o CTA "Ver minhas reservas" do
             sucesso chega aqui). No rail o card é um link inteiro (sem chevron)
             com largura fixa, deslizando com snap leve – mesmo idioma do
@@ -279,7 +294,8 @@ export default function PerfilPage() {
                 <Link
                   key={reserva.id}
                   className="perfil-card"
-                  to={`/loja/${merchant.slug}/beneficio/${reserva.offerIndex}`}
+                  to={`/loja/${merchant.slug}/reserva/sucesso`}
+                  state={reserva}
                 >
                   <img className="perfil-card__logo" src={merchant.logo} alt="" />
                   <span className="perfil-card__body">

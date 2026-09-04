@@ -71,8 +71,9 @@
   text-align: center;
 }
 
-/* Contadores (112:8355) – par de colunas (número 20px Medium + rótulo 12px
- * Regular #a3a3a3), centralizadas. */
+/* Contadores (112:8355) – trio de colunas (número 20px Medium + rótulo 12px
+ * Regular #a3a3a3), centralizadas. Check-ins/Avaliações seguem a cópia fixa do
+ * frame; "Reservas" é um terceiro contador vivo (fora do frame). */
 .perfil-page__counters {
   display: flex;
   justify-content: center;
