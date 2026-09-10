@@ -118,7 +118,7 @@ export default function MovePage() {
 
             <div className="move-experiences__list">
               {/* "Visão do restaurante" leva à rota /salao, que embute o Portal
-                  B2B (CRM do restaurante) publicado em portal-nn.vercel.app –
+                  B2B (CRM do restaurante) publicado em https://portal-move.vercel.app –
                   iframe full-screen com a barra "Voltar" para /move. */}
               <Link to="/salao" className="move-experience move-experience--link">
                 <Icon name="order" style="Line" size={24} className="move-experience__icon" />

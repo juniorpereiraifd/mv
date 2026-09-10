@@ -21,6 +21,7 @@ dist/
 # Subprojetos mantidos fora deste repo (não fazem parte do app B2C "mv")
 /b2b/
 /Portal-B2B-main/
+/Portal-B2B-main 2/
 /restaurantes/
 
 # Claude Code local (config da ferramenta, não é código do app)
@@ -28,3 +29,10 @@ dist/
 
 # Saída gerada por scripts/build_restaurantes.mjs (regenerável)
 /restaurantes.json
+
+# Copia do build do Portal-B2B-main 2 em public/salao/ (servida em /salao) –
+# artefato de build, regenerável, não versionado. Regenerar quando necessário:
+#   cd "Portal-B2B-main 2" && pnpm install && pnpm exec vite build --base /salao/
+#   rsync -a dist/ ../public/salao/
+/public/salao/
+
