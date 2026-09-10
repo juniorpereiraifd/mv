@@ -106,6 +106,15 @@ export default function MovePage() {
               Fidelize quem já vem ao salão e traga clientes do delivery para a
               sua vitrine com a força do iFood
             </p>
+
+            {/* CTA "Cadastrar meu interesse" (Figma 154:6211) – pílula branca
+                abaixo do subtítulo, exibida apenas em larguras < 1025px (ver
+                `.move-hero__cta` no CSS). A rota ainda não existe: o clique
+                será ligado quando o link de cadastro for definido. */}
+            <button type="button" className="move-hero__cta">
+              Cadastrar meu interesse
+              <Icon name="chevron-right" style="Line" size={16} />
+            </button>
           </div>
         </div>
 
