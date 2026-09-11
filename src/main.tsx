@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import App from './App'
 import BeneficioPage from './pages/BeneficioPage/BeneficioPage'
 import CategoriaPage from './pages/CategoriaPage/CategoriaPage'
+import CadastroPage from './pages/CadastroPage/CadastroPage'
 import MovePage from './pages/MovePage/MovePage'
 import BuscarEnderecoPage from './pages/BuscarFlow/BuscarEnderecoPage'
 import BuscarRestaurantesPage from './pages/BuscarFlow/BuscarRestaurantesPage'
@@ -43,6 +44,12 @@ createRoot(document.getElementById('root')!).render(
                 em TODA tela, inclusive na TV. */}
             <Route path="/move" element={<MovePage />} />
             <Route path="/salao" element={<SalaoPage />} />
+
+            {/* Cadastro de interesse: embute o Google Forms publicado em iframe
+                full-screen – mesma mecânica de /salao e /reservas, com barra
+                "Voltar" para /move (ver CadastroPage). É o destino do CTA
+                "Cadastrar meu interesse" do hero do MovePage. */}
+            <Route path="/cadastro" element={<CadastroPage />} />
 
             {/* Visão de Reservas: embute o portal de reservas externo
                 (portal-nn.vercel.app) em iframe full-screen – mesma mecânica de

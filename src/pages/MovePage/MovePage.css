@@ -247,9 +247,12 @@
   line-height: 24px;
   cursor: pointer;
   transition: background 0.2s ease;
+  /* O CTA é um <Link> (vira <a>), que herda sublinhado e cor de link do UA. */
+  text-decoration: none;
 }
 
-.move-hero__cta:hover {
+.move-hero__cta:hover,
+.move-hero__cta:focus-visible {
   background: var(--color-surface-secondary);
 }
 

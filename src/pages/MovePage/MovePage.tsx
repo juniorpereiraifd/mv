@@ -109,12 +109,13 @@ export default function MovePage() {
 
             {/* CTA "Cadastrar meu interesse" (Figma 154:6211) – pílula branca
                 abaixo do subtítulo, exibida apenas em larguras < 1025px (ver
-                `.move-hero__cta` no CSS). A rota ainda não existe: o clique
-                será ligado quando o link de cadastro for definido. */}
-            <button type="button" className="move-hero__cta">
+                `.move-hero__cta` no CSS). Abre a rota /cadastro, que embute o
+                formulário do Google Forms em iframe full-screen – mesma
+                mecânica das outras experiências embutidas. */}
+            <Link to="/cadastro" className="move-hero__cta">
               Cadastrar meu interesse
               <Icon name="chevron-right" style="Line" size={16} />
-            </button>
+            </Link>
           </div>
         </div>
 
